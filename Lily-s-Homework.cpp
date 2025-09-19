@@ -13,47 +13,7 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
-// from https://www.hackerrank.com/challenges/lilys-homework/forum by shiftdel1
-int lilysHomework(vector<int> arr)
-{
-    std::vector<int>arrCopy{arr};
-    std::vector<int>sortedAscend{arr};
-    std::vector<int>sortedDescend{arr};    
-    std::map<int, int>ascendMap;
-    std::map<int, int>descendMap;
-    int ascend{0};
-    int descend{0};
-    
-    for (int i = 0; i < arr.size(); ++i)
-    {
-        ascendMap[arr[i]] = i;
-        descendMap[arr[i]] = i;
-    }
-               
-    std::sort(sortedAscend.begin(), sortedAscend.end());
-    std::sort(sortedDescend.begin(), sortedDescend.end(), greater<int>());
-    
-    for (int i{0}; i < arr.size(); ++i)
-    {
-        if (ascendMap[sortedAscend[i]] != i)
-        {
-            ascendMap[arrCopy[i]] = ascendMap[sortedAscend[i]];
-            ascendMap[sortedAscend[i]] = i;
-            std::swap(arrCopy[ascendMap[arrCopy[i]]], arrCopy[ascendMap[sortedAscend[i]]]);
-            ascend++;
-        }
-        
-        if (descendMap[sortedDescend[i]] != i)
-        {
-            descendMap[arr[i]] = descendMap[sortedDescend[i]];
-            descendMap[sortedDescend[i]] = i;
-            std::swap(arr[descendMap[arr[i]]], arr[descendMap[sortedDescend[i]]]);
-            descend++;
-        }            
-    }
-    
-    return (ascend < descend) ? ascend : descend;
-}
+
 
 int main()
 {
