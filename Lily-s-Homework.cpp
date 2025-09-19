@@ -15,6 +15,20 @@ vector<string> split(const string &);
 
 
 
+int lilysHomework(vector<int> arr) {
+    vector<int> asc = arr;
+    vector<int> desc = arr;
+
+    sort(asc.begin(), asc.end());
+    sort(desc.begin(), desc.end(), greater<int>());
+
+    int asc_swaps = countSwaps(arr, asc);
+    int desc_swaps = countSwaps(arr, desc);
+
+    return min(asc_swaps, desc_swaps);
+}
+
+
 int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
@@ -87,21 +101,3 @@ std::vector<string> split(const string &str)
 
     return tokens;
 }
-
-vector<string> split(const string &str) {
-    vector<string> tokens;
-
-    string::size_type start = 0;
-    string::size_type end = 0;
-
-    while ((end = str.find(" ", start)) != string::npos) {
-        tokens.push_back(str.substr(start, end - start));
-
-        start = end + 1;
-    }
-
-    tokens.push_back(str.substr(start));
-
-    return tokens;
-}
-
