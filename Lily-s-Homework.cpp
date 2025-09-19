@@ -13,7 +13,33 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
+int countSwaps(const vector<int>& arr, const vector<int>& sorted) {
+    int n = arr.size();
 
+    unordered_map<int,int> pos;
+    for (int i = 0; i < n; i++) {
+        pos[sorted[i]] = i;
+    }
+
+    vector<bool> visited(n, false);
+    int swaps = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (visited[i] || pos.at(arr[i]) == i) continue;
+
+        int cycle_size = 0;
+        int j = i;
+
+        while (!visited[j]) {
+            visited[j] = true;
+            j = pos[arr[j]];
+            cycle_size++;
+        }
+        if (cycle_size > 1) swaps += (cycle_size - 1);
+    }
+
+    return swaps;
+}
 
 int lilysHomework(vector<int> arr) {
     vector<int> asc = arr;
