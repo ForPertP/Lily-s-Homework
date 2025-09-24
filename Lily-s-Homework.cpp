@@ -16,7 +16,7 @@ vector<string> split(const string &);
 int countSwaps(const vector<int>& arr, const vector<int>& sorted) {
     int n = arr.size();
 
-    unordered_map<int,int> pos;
+    unordered_map<int, int> pos;
     for (int i = 0; i < n; i++) {
         pos[sorted[i]] = i;
     }
