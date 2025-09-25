@@ -20,6 +20,35 @@ class Result {
      * The function accepts INTEGER_ARRAY arr as parameter.
      */
 
+    private static int countSwaps(List<Integer> arr, List<Integer> sorted) {
+        int n = arr.size();
+
+        Map<Integer, Integer> pos = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            pos.put(sorted.get(i), i);
+        }
+
+        boolean[] visited = new boolean[n];
+        int swaps = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (visited[i] || pos.get(arr.get(i)) == i) continue;
+
+            int cycleSize = 0;
+            int j = i;
+
+            while (!visited[j]) {
+                visited[j] = true;
+                j = pos.get(arr.get(j));
+                cycleSize++;
+            }
+
+            if (cycleSize > 1) swaps += (cycleSize - 1);
+        }
+
+        return swaps;
+    }
+    
 }
 
 
