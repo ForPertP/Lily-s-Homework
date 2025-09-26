@@ -48,8 +48,9 @@ class Result {
 
         return swaps;
     }
-    
-}
+
+    public static int lilysHomework(List<Integer> arr) {
+    }
 
 
 public class Solution {
