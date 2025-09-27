@@ -10,7 +10,6 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-
 class Result {
 
     /*
@@ -19,7 +18,7 @@ class Result {
      * The function is expected to return an INTEGER.
      * The function accepts INTEGER_ARRAY arr as parameter.
      */
-
+     
     private static int countSwaps(List<Integer> arr, List<Integer> sorted) {
         int n = arr.size();
 
@@ -48,9 +47,21 @@ class Result {
 
         return swaps;
     }
+    
 
     public static int lilysHomework(List<Integer> arr) {
+        List<Integer> asc = new ArrayList<>(arr);
+        List<Integer> desc = new ArrayList<>(arr);
+
+        Collections.sort(asc);
+        desc.sort(Collections.reverseOrder());
+
+        int ascSwaps = countSwaps(arr, asc);
+        int descSwaps = countSwaps(arr, desc);
+
+        return Math.min(ascSwaps, descSwaps);
     }
+}
 
 
 public class Solution {
